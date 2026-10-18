@@ -1,0 +1,457 @@
+/* ==========================================
+   1. ПЕРЕМЕННЫЕ И ЦВЕТОВАЯ ГАММА
+   ================================---------- */
+:root {
+    --burgundy: #4A121A;       /* Глубокий бордовый бархат для конверта и акцентов */
+    --dark-burgundy: #2C0A0F;  /* Темный бордовый для фона */
+    --gold: #D4AF37;           /* Благородное золото для рамок и текста */
+    --cream: #FDFBF7;          /* Нежный кремово-песочный фон открытки */
+    --olive-bg: #4F5D4E;       /* Красивый оливково-зеленый цвет для блока опроса (как на фото) */
+    --text-dark: #333333;      /* Основной темный цвет для читаемости текста */
+    --text-light: #777777;     /* Вспомогательный серый цвет */
+}
+
+/* Сброс стандартных отступов */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark-burgundy);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Главный контейнер открытки (мобильный формат) */
+.container {
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--cream);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   2. ЭКРАН 1: БОРДОВЫЙ КОНВЕРТ И СУРГУЧНАЯ ПЕЧАТЬ
+   ================================---------- */
+.envelope-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--burgundy) 0%, var(--dark-burgundy) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    padding: 20px;
+}
+
+/* Класс для плавного скрытия конверта при открытии */
+.envelope-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.05);
+}
+
+/* Кружевная рамка на конверте */
+.envelope-lace {
+    position: absolute;
+    top: 15%;
+    width: 90%;
+    height: 70%;
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.envelope-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.envelope-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 40px;
+}
+
+/* Объемная сургучная печать */
+.wax-seal {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #f4ecd8 0%, #d8c59d 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--gold);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.wax-seal:hover {
+    transform: scale(1.08);
+}
+
+.seal-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--burgundy);
+    font-weight: bold;
+}
+
+.open-invitation-btn {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 12px 30px;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.open-invitation-btn:hover {
+    background: var(--gold);
+    color: var(--dark-burgundy);
+}
+
+/* ==========================================
+   3. ОСНОВНОЙ КОНТЕНТ И БЛОКИ (КАК НА ФОТО)
+   ================================---------- */
+.main-content {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+/* Блок приветствия (как на вашем скриншоте с оливковым фоном) */
+.intro-section {
+    background-color: var(--olive-bg);
+    color: #fff;
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.greeting-text {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.sub-greeting {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+/* Имена жениха и невесты с красивым шрифтом */
+.couple-name-item {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.2rem;
+    color: #fff;
+    line-height: 1.1;
+    margin: 5px 0;
+}
+
+.connector-word {
+    font-size: 1rem;
+    margin: 5px 0;
+    opacity: 0.8;
+    text-transform: lowercase;
+}
+
+.invite-body-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+
+/* Блок фотографии в винтажной арке */
+.photo-container {
+    margin: 30px 0;
+}
+
+.photo-frame {
+    width: 240px;
+    height: 310px;
+    margin: 0 auto;
+    border-radius: 120px 120px 15px 15px;
+    overflow: hidden;
+    border: 4px solid var(--gold);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Таймер обратного отсчета */
+.countdown-section {
+    background: var(--burgundy);
+    color: #fff;
+    padding: 25px 15px;
+    border-radius: 15px;
+    margin: 30px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.countdown-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.countdown-grid {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.countdown-item span {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.countdown-item label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* Программа торжества */
+.program-section {
+    margin: 35px 0;
+    text-align: left;
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: var(--burgundy);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.program-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed rgba(74, 18, 26, 0.15);
+    padding-bottom: 12px;
+}
+
+.program-time {
+    font-weight: bold;
+    color: var(--burgundy);
+    font-size: 1.15rem;
+    width: 75px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.program-text {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+/* Блок локации и ресторана */
+.location-section {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    margin: 35px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.restaurant-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--burgundy);
+    letter-spacing: 2px;
+}
+
+.restaurant-type {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.restaurant-address {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.map-btn {
+    display: inline-block;
+    background-color: var(--burgundy);
+    color: var(--gold);
+    text-decoration: none;
+    padding: 12px 35px;
+    border-radius: 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: background 0.3s;
+}
+
+.map-btn:hover {
+    background-color: var(--dark-burgundy);
+}
+
+/* Блок хозяев торжества */
+.hosts-section {
+    margin: 35px 0;
+    font-family: 'Cormorant Garamond', serif;
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.waiting-text {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.hosts-title {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.hosts-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: var(--burgundy);
+    margin-top: 5px;
+}
+
+/* ==========================================
+   4. ФОРМА ОПРОСА (RSVP) В ОЛИВКОВОМ СТИЛЕ
+   ================================---------- */
+.rsvp-section {
+    background: var(--olive-bg);
+    color: #fff;
+    padding: 35px 20px;
+    border-radius: 15px;
+    margin-top: 35px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.rsvp-desc {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 8px;
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-hint {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.radio-group {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.radio-label input {
+    margin-right: 10px;
+    transform: scale(1.2);
+    accent-color: var(--gold);
+}
+
+.submit-btn {
+    background-color: var(--gold);
+    color: var(--dark-burgundy);
+    border: none;
+    padding: 14px 30px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.submit-btn:hover {
+    transform: scale(1.02);
+}
+
+/* Подвал сайта */
+.footer-logo {
+    margin-top: 40px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: var(--burgundy);
+    opacity: 0.8;
+}
